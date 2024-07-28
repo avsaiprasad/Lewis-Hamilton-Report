@@ -1,0 +1,178 @@
+---
+title: "Module Project 2: Interactive Visualization Assignment"
+subtitle: "INSH 5302 -  Information Design & Visual Analytics"
+author: "ENTER YOUR NAME HERE"
+date: "February 25, 2024"
+output:
+  html_document:
+    code_download: true
+    fig_caption: yes
+    theme: lumen
+    toc: yes
+    toc_depth: 2
+    df_print: kable
+    toc_float:
+      collapsed: no
+---
+
+```{r, message=FALSE}
+# Required packages for our course. Do not delete.
+library(tidyverse)
+library(mosaic)
+library(ggplot2)
+library(dplyr)
+library(plyr)
+```
+
+# Big-picture
+
+## Research Question
+
+*What is the question you hope to answer with your data visualization?*
+
+In this Data Visualization, I am planning to provide insights on Formula 1 racing, Lewis Hamilton Driving career Analysis, F1 races, Constructor Championships and hybrid Era.
+
+* * *
+
+# Data
+
+## Description of data
+
+*Please give a very short description of the data set along with it's original source. If it is part of a package, please indicate that.*
+
+The data for the infographic design is taken from kaggle. 
+https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020/data
+This contains F1 races, drivers, constructors, qualifying, circuits, lap times, pit stops, championships from 1950 till 2023 season.
+
+## Load data into R
+
+*Include the code to load your data here. Using the head() function, show the first 10 rows of data. *
+
+```{r, message = FALSE, warning = FALSE}
+circuits <- read.csv("circuits.csv")
+races <- read.csv("races.csv")
+results <- read.csv("results.csv")
+constructors <- read.csv("constructors.csv")
+drivers <- read.csv("drivers.csv")
+qualifying <- read.csv("qualifying.csv")
+
+```
+
+* * *
+
+# Variables
+
+*Using the names() function, show the names of all the columns (i.e. potential variables) in your data set. Delete this when complete.*
+```{r, message = FALSE, warning = FALSE}
+names(circuits)
+names(results)
+names(constructors)
+names(drivers)
+names(qualifying)
+```
+
+
+```{r, message = FALSE, warning = FALSE}
+
+duplicated(results) %>%
+    sum()
+
+```
+
+The variables I used in my data visualization design are:
+
+1. f1_drivers.points
+2. f1_drivers.position
+3. f1_drivers.wins
+4. f1_races.year
+5. f1_races.name
+6. f1_constructors.points
+7. f1_constructors.wins
+8. year
+9. date
+
+> NOTE: TIME MUST BE ONE OF YOUR VARIABLES FOR THE MODULE 2 PROJECT!
+
+* * *
+
+# Data Analysis
+
+## Summary Statistics
+
+*Using the favstats() function, calculate the necessary statistics you used to create your data visualization. Delete this when complete.*
+```{r, message = FALSE, warning = FALSE}
+
+summary(drivers)
+str(drivers)
+
+duplicated(results) %>%
+    sum()
+
+colSums(is.na(results))
+which(colSums(is.na(results))>0)
+```
+
+> Provide the high-level insights you used to craft your data visualization design.
+
+## Additional Analyses
+
+*If you conducted any other analyses of your data set to gather the data in your project, use this section to conduct your research. Delete this when complete.*
+# Data Mapping is done in Tableau. 
+
+> NOTE: TIME MUST BE ONE OF YOUR VARIABLES FOR THE MODULE 2 PROJECT! 
+
+* * *
+
+# Interactive Visualization
+
+
+## Option 2 | Interactive Tableau Dashboard
+
+### Link to Tableau Dashboard
+
+<div class='tableauPlaceholder' id='viz1710158989698' style='position: relative'><noscript><a href='#'><img alt='Story 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Si&#47;SirLewisHamiltonReport&#47;Story1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='SirLewisHamiltonReport&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Si&#47;SirLewisHamiltonReport&#47;Story1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>
+
+
+
+```{js, embedcode, echo = FALSE}
+                    var divElement = document.getElementById('viz1710158989698');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement); 
+
+```
+### Descriptions of Story Points
+
+For each story point, you should provide detailed analysis on what your dashboard is showing and how it helps to answer your over arching research question. 
+
+#### Story Point 1
+The first story point demonstrates Lewis Hamilton's achievements, where line chart and buttuerfly charts shows the comparision against his competitor from 2007-2022.
+
+The line chart shows the points earned in each race of that particular season between Lewis Hamilton and the next top driver in the grid that year.
+
+The Butterfly chart demonstrates Race wins, Podiums, Positions Gained, Positions Lost with his competitor each year.
+ 
+
+#### Story Point 2
+
+In story point 2, The animated bar chart shows top scored drivers in the grid year. Kimi Raikkonen is top scorer in 2007 followed by Hamilton in 2008 with one point difference with Felipe Massa. Jenson Button in 2009. Later, followed by Sebastian Vettel's dominance from 2010-13. Hamilton won in 2014-15 and had rivalry with his teamate Nico Rosberg and lost championship in 2016. Later followed by Hamilton from 2017-2020. Max Verstappen is top scored in 2021 beating Lewis Hamilton with 1 point in final race. 
+
+#### Story Point 3
+
+In Story Point 3, The Line Graph shows the Lewis Hamilton's performance in every race n every season. 
+Which helps to understand the performance in each circuit with finish position between 2007-2022.
+
+#### Story Point 4
+
+In Story point 4, The area chart shows the constructor points across the years from 1950-2023. During the Hybrid Era (from 2014 till present), Lewis Hamilton has won 45% of total F1 races under Mercedes. He Won 6 World Tiltles with Mercedes and won 8 Constructor Championships.
+
+This is a record number of points a team or a driver scored in this short peroiod of time, showing brutal dominance towards teams like Ferrari, Redbull & Mclaren.
+
+# References
+
+*Include any references that you might have used to construct your graphic. This may include, but is not limited to citations for: graphics used, coding techniques, data collection, R-Markdown/RStudio documentation, etc. Delete this when complete.*
+
+1. https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020/data
+
+* * *
+
+## All done!
+
+Knit the completed R Markdown file as a HTML document (click the "Knit" button at the top of the script editor window) and upload it to the submission portal on Canvas.
